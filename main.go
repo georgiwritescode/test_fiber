@@ -14,6 +14,7 @@ var (
 )
 
 func setup(app *fiber.App) {
+	app.Get("/", greeting)
 	app.Get("/api/v1/books", book.GetBooks)
 	app.Get("/api/v1/books/:id", book.GetBook)
 	app.Post("/api/v1/books", book.CreateBook)
@@ -50,4 +51,8 @@ func main() {
 	}
 
 	connect2db()
+}
+
+func greeting(c *fiber.Ctx) error {
+	return c.SendString("Hello there!")
 }
